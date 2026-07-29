@@ -264,23 +264,7 @@ Generate test cases for File Upload
 
 Generate test cases for Forgot Password.
 ```
-
 ---
-
-#  Screenshots
-
-> Add screenshots of your application here.
-
-Example:
-
-```
-screenshots/
-    home.png
-
-    testcase.png
-    rag_search.png
-```
-
 
 #  License
 
