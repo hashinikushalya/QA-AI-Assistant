@@ -18,6 +18,18 @@ https://app-ai-assistant-wx36xz3jwwezqyjizxu8sz.streamlit.app/
 
 ---
 
+---
+
+#  Developer
+
+**Hashini Kushalya**
+**ITBIN-2313-0037**
+
+GitHub:
+https://github.com/hashinikushalya
+
+---
+
 #  Project Overview
 
 **Agentic QA AI Assistant** is an AI-powered assistant designed to help **QA Engineers, Software Testers, and Test Automation Engineers** perform testing-related tasks efficiently.
@@ -269,16 +281,6 @@ screenshots/
     rag_search.png
 ```
 
----
-
-#  Developer
-
-**Hashini Kushalya**
-
-GitHub:
-https://github.com/hashinikushalya
-
----
 
 #  License
 
