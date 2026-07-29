@@ -1,6 +1,6 @@
 #  Agentic QA AI Assistant
 
-> A Multi-Agent AI System for Quality Assurance Engineers & Software Testers built using **Streamlit, Multi-Agent Architecture, RAG, ChromaDB, Groq LLM, PyTorch, and Transformers**.
+A **Multi-Agent AI System** for **Quality Assurance Engineers** and **Software Testers**, built using **Streamlit, LangChain, ChromaDB, Groq LLM, PyTorch, and Transformers**.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Architecture](https://img.shields.io/badge/Architecture-Multi--Agent-success)
@@ -10,95 +10,130 @@
 
 ---
 
+## Live Demo
+
+**Streamlit App**
+
+https://app-ai-assistant-wx36xz3jwwezqyjizxu8sz.streamlit.app/
+
+---
+
 #  Project Overview
 
-**Agentic QA AI Assistant** is a specialized Multi-Agent AI application designed to help Quality Assurance (QA) engineers, test automation engineers, and software testers with automated test case generation, QA concepts explanation, defect identification, and intelligent documentation search using Retrieval-Augmented Generation (RAG).
+**Agentic QA AI Assistant** is an AI-powered assistant designed to help **QA Engineers, Software Testers, and Test Automation Engineers** perform testing-related tasks efficiently.
 
-Instead of manually crafting test scenarios or searching through endless ISTQB syllabi and testing guidelines, users can paste requirements or ask questions to receive structured, high-quality QA responses.
+The application combines a **Multi-Agent Architecture** with **Retrieval-Augmented Generation (RAG)** to generate intelligent, structured, and context-aware responses for software testing activities.
+
+Users can:
+
+- Generate professional test cases
+- Ask QA concepts and ISTQB questions
+- Search testing documentation using AI
+- Receive polished and structured answers
+- Get source references from the knowledge base
 
 ---
 
 #  Features
 
--  **Smart Intent Routing:** Automatically directs queries to specialized QA agents.
--  **Automated Test Case Generation:** Generates comprehensive test cases (ID, Scenario, Steps, Test Data, Expected Results, Categories).
--  **QA Knowledge Base Search (RAG):** Context-aware searching over uploaded ISTQB and testing PDF documentation.
--  **AI Review & Polishing:** Validates and formats responses into clear, ready-to-use Markdown tables.
--  **Modern Dark UI:** Glassmorphism UI with seamless full-screen layout and live active agent execution tracking.
--  **Dynamic Source Attribution:** Shows precise PDF source references for answers derived from the knowledge base.
+- Smart Intent Routing
+- Automated Test Case Generation
+- RAG-based QA Knowledge Search
+- AI Review & Response Polishing
+- Modern Streamlit Dark UI
+- Source Attribution from PDFs
+- Fast Responses using Groq LLM
 
 ---
 
-#  Multi-Agent Architecture
-                   User
-                    │
-               Streamlit UI
-                    │
-               Router Agent
-                    │
-   ┌────────────────┴────────────────┐
-   ▼                                 ▼
-Test Case Agent               QA Knowledge Agent (RAG)
-(Generates Scenarios)          (Searches ChromaDB Vector Store)
-     │                                 │
-     └────────────────┬────────────────┘
-                      ▼
-                 Review Agent
-             (Refines & Formats Output)
+# Multi-Agent Architecture
+
+```
+                    User
                       │
-                Final Response
+                Streamlit UI
+                      │
+                Router Agent
+                      │
+      ┌───────────────┴───────────────┐
+      │                               │
+      ▼                               ▼
+ Test Case Agent              QA Knowledge Agent
+ (Generate Test Cases)        (RAG + ChromaDB Search)
+      │                               │
+      └───────────────┬───────────────┘
+                      ▼
+                Review Agent
+        (Validate & Format Response)
+                      │
+                      ▼
+              Final AI Response
+```
 
 ---
 
-# Agent Overview
+#  Agent Responsibilities
 
 | Agent | Responsibility |
-| :--- | :--- |
-| **Router Agent** | Analyzes user query intent (`TESTCASE` vs `QA_KNOWLEDGE`) |
-| **Test Case Agent** | Generates detailed test scenarios, steps, test data, and expected results |
-| **QA Knowledge Agent** | Performs vector search in ChromaDB using RAG over reference PDFs |
-| **Review Agent** | Reviews, validates quality, and structures final output into clean tables |
+|-------|----------------|
+| Router Agent | Detects user intent and routes the query |
+| Test Case Agent | Generates professional software test cases |
+| QA Knowledge Agent | Retrieves relevant information from the QA knowledge base using RAG |
+| Review Agent | Reviews, validates, and formats the final response |
 
 ---
 
 # Knowledge Base
 
-The assistant uses ChromaDB vector store containing foundational and advanced software testing documentation.
+The assistant uses a ChromaDB vector database containing software testing documentation.
 
-Loaded reference documents include:
+Included references:
 
 - ISTQB CTFL Syllabus v4.0.1
-- Software Testing Techniques & Methodologies
-- ISTQB Advanced Level Test Analyst & Technical Test Analyst Syllabi
-- ISTQB Test Automation Engineer & Test Manager Guides
+- ISTQB Advanced Level Test Analyst
+- ISTQB Technical Test Analyst
+- ISTQB Test Automation Engineer
+- ISTQB Test Manager
+- Software Testing Techniques
+- Agile Testing Guide
+- Scrum Testing Guide
 - OWASP Web Security Testing Guide
-- Agile Testing & Scrum Guidelines
-- PyTest & Automation Documentation
+- PyTest Documentation
 
 ---
 
-#  Technologies Used
+# Technologies Used
 
 ## Frontend
+
 - Streamlit
 
 ## Backend
+
 - Python 3.10+
 
-## AI Framework & RAG
+## AI Framework
+
+- LangChain
 - Custom Multi-Agent Pipeline
-- LangChain / Vector Store Integration
 
 ## Large Language Model
+
 - Groq (Llama 3)
 
-## Vector Database & Embeddings
-- ChromaDB
-- PyTorch & Torchvision
-- HuggingFace / Transformers
+## Vector Database
 
-## Document Loader
-- PyPDF / LangChain Document Loaders
+- ChromaDB
+
+## Embeddings
+
+- HuggingFace Transformers
+- PyTorch
+
+## Document Processing
+
+- PyPDF
+- LangChain Document Loaders
 
 ---
 
@@ -108,73 +143,149 @@ Loaded reference documents include:
 qa-ai-assistant/
 │
 ├── agents/
-│   ├── router.py               # Intent classification agent
-│   ├── testcase_agent.py       # Test case generation logic
-│   ├── rag_agent.py            # RAG vector store query engine
-│   └── review_agent.py         # Output refining & formatting agent
+│   ├── router.py
+│   ├── testcase_agent.py
+│   ├── rag_agent.py
+│   └── review_agent.py
 │
 ├── data/
-│   └── pdfs/                   # Loaded PDF knowledge base for RAG
+│   └── pdfs/
 │
-├── app.py                      # Main Streamlit UI application
-├── requirements.txt            # Project dependencies
-├── .gitignore                  # Git ignore file
-└── README.md                   # Project documentation
+├── app.py
+├── requirements.txt
+├── .env
+├── .gitignore
+└── README.md
+```
 
-Installation
-Clone the repository
+---
 
-Bash
-git clone [https://github.com/hashinikushalya/QA-AI-assistant.git](https://github.com/hashinikushalya/QA-AI-assistant.git)
-Navigate to project directory
+#  Installation
 
-Bash
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/hashinikushalya/QA-AI-assistant.git
+```
+
+## 2. Navigate to the Project
+
+```bash
 cd QA-AI-assistant
-Create virtual environment
+```
 
-Bash
+## 3. Create a Virtual Environment
+
+```bash
 python -m venv venv
-Activate virtual environment
+```
 
-Windows:
+## 4. Activate the Environment
 
-Bash
+### Windows
+
+```bash
 venv\Scripts\activate
-macOS / Linux:
+```
 
-Bash
+### macOS/Linux
+
+```bash
 source venv/bin/activate
-Install dependencies
+```
 
-Bash
+## 5. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+If required:
+
+```bash
 pip install torch torchvision
+```
 
-Environment Variables
-Create a .env file in the root directory:
+---
 
-Code snippet
-GROQ_API_KEY=your_groq_api_key_here
+#  Environment Variables
 
-Run the Project
-Bash
+Create a `.env` file in the project root.
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+---
+
+#  Run the Application
+
+```bash
 streamlit run app.py
+```
 
-Example Prompts
-Plaintext
-# QA Concept Enquiries:
-- "What is the difference between Severity and Priority?"
-- "Explain Boundary Value Analysis according to ISTQB."
-- "What are the 7 testing principles?"
+---
 
-# Test Case Generation Requests:
-- "Generate test cases for a user login feature with email and password."
-- "Generate test cases for a file upload component (Max size 5MB, PDF only)."
+#  Example Prompts
 
-Developer
-Hashini Kushalya
+## QA Concepts
 
-GitHub: https://github.com/hashinikushalya
+```
+What is Boundary Value Analysis?
 
-License
-This project is open-source and developed for educational and portfolio demonstration purposes under the MIT License.
+Explain Severity vs Priority.
+
+What are the 7 Testing Principles?
+
+Explain Smoke Testing.
+```
+
+## Test Case Generation
+
+```
+Generate test cases for a Login Page.
+
+Generate test cases for User Registration.
+
+Generate test cases for File Upload
+(Max file size 5MB, PDF only).
+
+Generate test cases for Forgot Password.
+```
+
+---
+
+#  Screenshots
+
+> Add screenshots of your application here.
+
+Example:
+
+```
+screenshots/
+    home.png
+
+    testcase.png
+    rag_search.png
+```
+
+---
+
+#  Developer
+
+**Hashini Kushalya**
+
+GitHub:
+https://github.com/hashinikushalya
+
+---
+
+#  License
+
+This project is licensed under the **MIT License**.
+
+Developed for educational, research, and portfolio purposes.
+
+---
+
+ If you found this project useful, consider giving it a **Star** on GitHub.
